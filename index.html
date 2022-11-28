@@ -21,6 +21,67 @@
 
 
     <script src="helper.js"></script>
+
+
+    <!-- <script>
+
+    function optimizeCanvas(cnv) {
+      // Get the DPR and size of the canvas
+      const dpr = window.devicePixelRatio
+      const rect = cnv.getBoundingClientRect()
+
+      // Set the "actual" size of the canvas
+      cnv.width = rect.width * dpr;
+      cnv.height = rect.height * dpr;
+
+      // Scale the context to ensure correct drawing operations
+      cnv.getContext('2d').scale(dpr, dpr)
+
+      // Set the "drawn" size of the canvas
+      cnv.style.width = `${rect.width}px`;
+      cnv.style.height = `${rect.height}px`;
+    }
+        const cnv = document.querySelector("#cnv-1")
+        cnv.width = window.innerWidth
+        cnv.height = window.innerHeight
+        const ctx = cnv.getContext('2d')
+        optimizeCanvas(cnv)
+
+        console.log(cnv)
+        const r = 100
+        let a = 0
+
+        function draw() {
+        //background(220);
+
+
+        // ctx.clearRect(window.innerWidth/2-50, window.innerHeight/2-50, 100, 100)
+
+
+
+        ctx.save()
+        ctx.translate(window.innerWidth/2, window.innerHeight/2)
+        ctx.fillStyle = 'violet'
+        ctx.beginPath()
+        const x = Math.sin(a) *r
+        const y = Math.sin(a*100) * r
+        a += 0.01
+        console.log(a)
+        console.log(x,y)
+
+        ctx.fillRect(x,y,50, 50)
+        // ctx.arc(x, y, 1.5, 0, Math.PI)
+        // ctx.fill()
+        // ctx.restore()
+
+
+
+        window.requestAnimationFrame(draw)
+        }
+
+        draw()
+    </script> -->
+
     <script src="sketch.js"></script>
 
 
