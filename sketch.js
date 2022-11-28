@@ -38,7 +38,6 @@ function draw() {
 
 
   // ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
-
       refresh()
       console.log("Shifts", iShiftX, iShiftY)
       ctx.save()
@@ -47,8 +46,12 @@ function draw() {
       // ctx.beginPath()
       // const x = Math.sin(a) *r
       // const y = Math.sin(a*100) * r
+
       let x = r + a + iShiftX
       let y = r + a + iShiftY
+
+      if (x > c)
+
       a += 0.1
       // console.log("interval ", a)
       // console.log("coord", x,y)
