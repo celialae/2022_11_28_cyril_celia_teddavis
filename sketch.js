@@ -2,21 +2,8 @@ const cnv = document.querySelector("#cnv-1")
 cnv.width = window.innerWidth
 cnv.height = window.innerHeight
 const ctx = cnv.getContext('2d')
+
 optimizeCanvas(cnv)
-
-
-
-class drawForm {
-  constructor (x, y, size, color) {
-    this.x = x
-    this.y = y
-    this.s = size
-    this.c = color
-  }
-  show() {
-    ctx.strokeRect(this.x, this.y, this.size, this.size)
-  }
-}
 
 
 console.log(cnv)
@@ -34,8 +21,6 @@ let mouseY
 window.addEventListener("click", (e) =>{
     console.log("click")
 
-
-
     if (color == "violet") {
       color = "green"
       ctx.strokeStyle = color
@@ -44,7 +29,7 @@ window.addEventListener("click", (e) =>{
       ctx.strokeStyle = color
     }
 
-
+    
   // console.log(mouseX, mouseY)
 })
 
@@ -54,16 +39,7 @@ window.addEventListener("mousemove", (e) =>{
 
   cvsShiftX = mapRange(mouseX, 0, cnv.offsetWidth, 0, 200)
   cvsShiftY = mapRange(mouseY, 0, cnv.offsetWidth, 0, 200)
-  console.log(cvsShiftX, cvsShiftY)
-
-  for (let i = 0; i < 5; i++) {
-    ctx.save()
-    ctx.scale(1, 1)
-    ctx.drawImage(cnv, 0, 0, cvs.offsetWidth * 0.5, cvs.offsetHeight * 0.5 )
-    ctx.restore()
-  }
-  
-
+  // console.log(cvsShiftX, cvsShiftY)
   // console.log(mouseX, mouseY)
 })
 
@@ -115,14 +91,14 @@ function draw() {
       aX += getRndInteger(-a, a)
       aY += getRndInteger(-a, a)
      
-      ctx.lineWidth = 0.15
+      ctx.lineWidth = 0.05
       ctx.save()
       ctx.translate(x, y)
       
       ctx.strokeRect(x, y, size, size)
       ctx.restore()
 
-      ctx.lineWidth = 0.15
+      ctx.lineWidth = 1
       ctx.save()
       ctx.rotate(Math.PI)
       ctx.translate(x, y)
@@ -131,11 +107,26 @@ function draw() {
 
       ctx.restore()
 
-     
+      let copys = 2
+      let copySize = 400
+      for (let i = 0; i < copys; i++) {
+        s = i/copys
+        ctx.save()
+        ctx.scale(1, 1)
+        ctx.translate(-window.innerWidth/2, -window.innerHeight/2)
+        ctx.globalCompositeOperation = "difference"
+        ctx.globalAlpha = 0.1
+        ctx.drawImage(cnv, cnv.offsetWidth/2 - copySize/2, cnv.offsetHeight - copySize/2, copySize, copySize  ,cnv.offsetWidth + (mouseX - cnv.offsetWidth/2) * s - copySize/2, cnv.offsetHeight/2 + (mouseY - cnv.offsetHeight/2) * s + copySize, copySize, copySize )
+        ctx.restore()
+      }
       
+
+
       window.requestAnimationFrame(draw)
 }
 
 refresh()
 draw()
+
+
 
